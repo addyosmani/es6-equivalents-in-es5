@@ -111,8 +111,8 @@ var a = 5;
 var b = 10;
 
 if (a === 5) {
-    var _a = 4; 
-    var b = 1; 
+    var _a = 4;
+    var b = 1;
 
     console.log(_a); // 4
     console.log(b); // 1
@@ -657,39 +657,6 @@ expect(getPoint()).to.be.eql({
     x: 1,
     y: 10
 });
-```
-
-## Object Property Shorthands
-
-```js
-var firstName = 'Erik';
-var lastName  = 'Arvidsson';
-
-// ES6
-var personB = { firstName, lastName };
-
-// ES5
-var personA = { firstName: firstName, lastName: lastName };
-```
-
-## Shorthand Methods
-
-```
-// ES6
-var personD = {
-    name: 'Erik',
-    sayYo() {
-        console.log('Yo, ' + this.name + '!');
-    }
-};
-
-// ES5
-var personC = {
-    name: 'Erik',
-    sayYo: function () {
-        console.log('Yo, ' + this.name + '!');
-    }
-};
 ```
 
 ## Rest Parameters
