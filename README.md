@@ -782,3 +782,7 @@ Inspired by:
 * [ES6 Features](https://github.com/lukehoban/es6features)
 * [ECMAScript 6 support in Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla)
 * [6to5](https://6to5.org)
+
+## License
+
+This work is licensed under a [Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/) License.
