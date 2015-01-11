@@ -105,17 +105,14 @@ console.log(b); // 1
 ES5:
 
 ```js
-// let declares a block scope local variable,
-// optionally initializing it to a value in ES6
-
 "use strict";
 
 var a = 5;
 var b = 10;
 
 if (a === 5) {
-    var _a = 4; // The scope is inside the if-block
-    var b = 1; // The scope is inside the function
+    var _a = 4; 
+    var b = 1; 
 
     console.log(_a); // 4
     console.log(b); // 1
