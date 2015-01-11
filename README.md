@@ -235,27 +235,14 @@ ES5:
 ```js
 "use strict";
 
-var _defineProperty = function (obj, key, value) {
-    return Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-    });
-};
-
 var prefix = "foo";
-var myObject = (function () {
-    var _myObject = {};
+var myObject = {};
 
-    _defineProperty(_myObject, prefix + "bar", "hello");
-    _defineProperty(_myObject, prefix + "baz", "world");
+myObject[prefix + "bar"] = "hello";
+myObject[prefix + "baz"] = "world";
 
-    return _myObject;
-})();
-
-console.log(myObject.foobar);
-console.log(myObject.foobaz);
+console.log(myObject["foobar"]);
+console.log(myObject["foobaz"]);
 ```
 
 ## Destructuring Assignment
