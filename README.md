@@ -472,7 +472,7 @@ app.js - ES6
 
 ```js
 import math from "lib/math";
-console.log("2Ï€ = " + math.sum(math.pi, math.pi));
+console.log("2π = " + math.sum(math.pi, math.pi));
 ```
 
 app.js - ES5
@@ -486,7 +486,7 @@ var _interopRequire = function (obj) {
 
 var math = _interopRequire(require("lib/math"));
 
-console.log("2Ï€ = " + math.sum(math.pi, math.pi));
+console.log("2π = " + math.sum(math.pi, math.pi));
 ```
 
 lib/math.js - ES6
