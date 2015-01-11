@@ -199,7 +199,7 @@ console.log("Yo! My name is " + person + "!");
 // Expressions work just as well with object literals
 var user = { name: "Caitlin Potter" };
 console.log("Thanks for getting this into V8, " + user.name + ".");
-c
+
 // Expression interpolation. One use is readable inline math.
 var a = 50;
 var b = 100;
