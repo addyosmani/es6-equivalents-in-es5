@@ -28,18 +28,18 @@ var nums = evens.map((v, i) => v + i);
 
 // Statement bodies
 nums.forEach(v => {
-    if (v % 5 === 0)
-        fives.push(v);
+  if (v % 5 === 0)
+    fives.push(v);
 });
 
 // Lexical this
 var bob = {
-    _name: "Bob",
-    _friends: [],
-    printFriends() {
-        this._friends.forEach(f =>
-            console.log(this._name + " knows " + f));
-    }
+  _name: "Bob",
+  _friends: [],
+  printFriends() {
+    this._friends.forEach(f =>
+      console.log(this._name + " knows " + f));
+  }
 }
 ```
 
@@ -91,11 +91,11 @@ var a = 5;
 var b = 10;
 
 if (a === 5) {
-    let a = 4; // The scope is inside the if-block
-    var b = 1; // The scope is inside the function
+  let a = 4; // The scope is inside the if-block
+  var b = 1; // The scope is inside the function
 
-    console.log(a);  // 4
-    console.log(b);  // 1
+  console.log(a);  // 4
+  console.log(b);  // 1
 }
 
 console.log(a); // 5
@@ -111,11 +111,11 @@ var a = 5;
 var b = 10;
 
 if (a === 5) {
-    var _a = 4;
-    var b = 1;
+  var _a = 4;
+  var b = 1;
 
-    console.log(_a); // 4
-    console.log(b); // 1
+  console.log(_a); // 4
+  console.log(b); // 1
 }
 
 console.log(a); // 5
@@ -132,10 +132,10 @@ ES6:
 const favorite = 7;
 // Attempt to overwrite the constant
 try {
-    favorite = 15;
+  favorite = 15;
 } catch (e) {
-    console.log("my favorite number is still: " + favorite);
-    // will still print 7
+  console.log("my favorite number is still: " + favorite);
+  // will still print 7
 }
 ```
 
@@ -207,7 +207,7 @@ console.log("string text line 1\nstring text line 2");
 
 // Functions inside expressions
 function fn() {
-    return "result";
+  return "result";
 }
 console.log("foo " + fn() + " bar");
 ```
@@ -222,8 +222,8 @@ ES6:
 ```js
 var prefix = "foo";
 var myObject = {
-    [prefix + "bar"]: "hello",
-    [prefix + "baz"]: "world"
+  [prefix + "bar"]: "hello",
+  [prefix + "baz"]: "world"
 };
 
 console.log(myObject["foobar"]);
@@ -282,19 +282,19 @@ ES5:
 "use strict";
 
 var _slicedToArray = function (arr, i) {
-    if (Array.isArray(arr)) {
-        return arr;
-    } else {
-        var _arr = [];
+  if (Array.isArray(arr)) {
+    return arr;
+  } else {
+    var _arr = [];
 
-        for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {
-            _arr.push(_step.value);
+    for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {
+      _arr.push(_step.value);
 
-            if (i && _arr.length === i) break;
-        }
-
-        return _arr;
+      if (i && _arr.length === i) break;
     }
+
+    return _arr;
+  }
 };
 
 var _ref = [1, 2, 3];
@@ -315,7 +315,7 @@ ES6:
 
 ```js
 function greet(msg="hello",name="world"){
-    console.log(msg,name);
+  console.log(msg,name);
 }
 ```
 
@@ -325,9 +325,9 @@ ES5:
 "use strict";
 
 function greet() {
-    var msg = arguments[0] === undefined ? "hello" : arguments[0];
-    var name = arguments[1] === undefined ? "world" : arguments[1];
-    console.log(msg, name);
+  var msg = arguments[0] === undefined ? "hello" : arguments[0];
+  var name = arguments[1] === undefined ? "world" : arguments[1];
+  console.log(msg, name);
 }
 ```
 
@@ -363,7 +363,7 @@ ES6:
 
 ```js
 for (let element of [1, 2, 3]) {
-    console.log(element);
+  console.log(element);
 }
 ```
 
@@ -373,8 +373,8 @@ ES5:
 "use strict";
 
 for (var _iterator = [1, 2, 3][Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {
-    var element = _step.value;
-    console.log(element);
+  var element = _step.value;
+  console.log(element);
 }
 ```
 
@@ -503,7 +503,7 @@ lib/mathplusplus.js - ES6
 export * from "lib/math";
 export var e = 2.71828182846;
 export default function(x) {
-    return Math.exp(x);
+  return Math.exp(x);
 }
 ```
 
@@ -618,14 +618,14 @@ ES6:
 
 ```js
 function getPoint() {
-    var x = 1;
-    var y = 10;
+  var x = 1;
+  var y = 10;
 
-    return {x, y};
+  return {x, y};
 }
 expect(getPoint()).to.be.eql({
-    x: 1,
-    y: 10
+  x: 1,
+  y: 10
 });
 ```
 
@@ -635,14 +635,14 @@ ES5:
 "use strict";
 
 function getPoint() {
-    var x = 1;
-    var y = 10;
+  var x = 1;
+  var y = 10;
 
-    return { x: x, y: y };
+  return { x: x, y: y };
 }
 expect(getPoint()).to.be.eql({
-    x: 1,
-    y: 10
+  x: 1,
+  y: 10
 });
 ```
 
@@ -655,8 +655,8 @@ ES6:
 
 ```js
 function f(x, ...y) {
-    // y is an Array
-    return x * y.length;
+  // y is an Array
+  return x * y.length;
 }
 console.assert(f(3, "hello", true) == 6);
 ```
@@ -667,14 +667,14 @@ ES5:
 "use strict";
 
 function f(x) {
-    var y = [];
+  var y = [];
 
-    for (var _key = 1; _key < arguments.length; _key++) {
-        y[_key - 1] = arguments[_key];
-    }
+  for (var _key = 1; _key < arguments.length; _key++) {
+    y[_key - 1] = arguments[_key];
+  }
 
-    // y is an Array
-    return x * y.length;
+  // y is an Array
+  return x * y.length;
 }
 console.assert(f(3, "hello", true) == 6);
 ```
@@ -687,7 +687,7 @@ ES6:
 
 ```js
 function add(a, b) {
-    return a + b;
+  return a + b;
 }
 
 let nums = [5, 4];
@@ -701,11 +701,11 @@ ES5:
 "use strict";
 
 var _toArray = function (arr) {
-    return Array.isArray(arr) ? arr : Array.from(arr);
+  return Array.isArray(arr) ? arr : Array.from(arr);
 };
 
 function add(a, b) {
-    return a + b;
+  return a + b;
 }
 
 var nums = [5, 4];
@@ -742,9 +742,9 @@ ES6:
 ```js
 var target = function () { return 'I am the target'; };
 var handler = {
-    apply: function (receiver, ...args) {
+  apply: function (receiver, ...args) {
     return 'I am the proxy';
-}
+  }
 };
 
 var p = new Proxy(target, handler);
@@ -756,18 +756,18 @@ ES5:
 ```js
 "use strict";
 var target = function () {
-    return "I am the target";
+  return "I am the target";
 };
 var handler = {
-    apply: function (receiver) {
-        var args = [];
+  apply: function (receiver) {
+    var args = [];
 
-        for (var _key = 1; _key < arguments.length; _key++) {
-            args[_key - 1] = arguments[_key];
-        }
-
-        return "I am the proxy";
+    for (var _key = 1; _key < arguments.length; _key++) {
+      args[_key - 1] = arguments[_key];
     }
+
+    return "I am the proxy";
+  }
 };
 
 var p = new Proxy(target, handler);
