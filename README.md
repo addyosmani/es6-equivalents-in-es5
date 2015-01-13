@@ -384,10 +384,11 @@ for (var _iterator = [1, 2, 3][Symbol.iterator](), _step; !(_step = _iterator.ne
 
 ES5 (approximates):
 
-```
+```js
 // Using forEach()
-// Doesn't require declaring indexing and entry variables in your containing scope. They get supplied as
-// arguments to the iterator and are scoped to just that iteration.
+// Doesn't require declaring indexing and entry variables in your containing 
+// scope. They get supplied as arguments to the iterator and are scoped to just 
+// that iteration.
 var a = [1,2,3];
 a.forEach(function(entry) {
     console.log(entry);
