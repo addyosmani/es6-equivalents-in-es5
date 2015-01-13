@@ -276,7 +276,7 @@ ES6:
 var [a, , b] = [1,2,3];
 ```
 
-ES5:
+ES6 (shimming using `Symbol.iterator`):
 
 ```js
 "use strict";
@@ -304,6 +304,8 @@ var _ref2 = _slicedToArray(_ref, 3);
 var a = _ref2[0];
 var b = _ref2[2];
 ```
+
+ES5?
 
 
 ## Default Parameters
