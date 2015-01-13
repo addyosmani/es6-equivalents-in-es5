@@ -6,7 +6,7 @@
 
 An arrow function expression (also known as fat arrow function) has a shorter syntax compared to function expressions
 and lexically binds the this value. Arrow functions are always anonymous.
-
+sy
 ES6:
 
 ```js
@@ -357,7 +357,7 @@ f(3) == 15;
 ## Iterators And For-Of
 
 Iterators are objects that can traverse a container. It's a useful way to make a class work inside a for of loop.
-The interface is similar to the iterators-interface. Iterating with a for of loop looks like:
+The interface is similar to the iterators-interface. Iterating with a `for..of` loop looks like:
 
 ES6:
 
@@ -365,9 +365,13 @@ ES6:
 for (let element of [1, 2, 3]) {
   console.log(element);
 }
+
+// => 1 2 3
 ```
 
-ES5:
+Behind the scenes, this will get an iterator from the array and loop through it, getting values from it.
+
+ES6 (without using `for-of`, if `Symbol` is supported):
 
 ```js
 "use strict";
@@ -376,9 +380,33 @@ for (var _iterator = [1, 2, 3][Symbol.iterator](), _step; !(_step = _iterator.ne
   var element = _step.value;
   console.log(element);
 }
+
+// => 1 2 3
 ```
 
-Note the use of `Symbol`. The ES5 equivalent would require a Symbol polyfill in order to correctly function.
+ES5 (approximates):
+
+```
+// Using forEach()
+// Doesn't require declaring indexing and entry variables in your containing scope. They get supplied as
+// arguments to the iterator and are scoped to just that iteration.
+var a = [1,2,3];
+a.forEach(function(entry) {
+    console.log(entry);
+});
+
+// => 1 2 3
+
+// Using a for loop
+var index;
+var a = [1,2,3];
+for (index = 0; index < a.length; ++index) {
+    console.log(a[index]);
+}
+// => 1 2 3
+```
+
+Note the use of `Symbol`. The ES5 equivalent would require a Symbol polyfill in order to correctly function. 
 
 ## Classes
 
@@ -412,7 +440,7 @@ var hw = new HelloWorld();
 hw.echo();
 ```
 
-ES5:
+ES5 (approximate):
 
 ```js
 var Hello = function() {
@@ -454,6 +482,8 @@ Modules are mostly implemented, with some parts of the Loader API still to be co
 issues in dependencies and deployment, allowing users to create modules with explicit exports, import specific
 exported names from those modules, and keep these names separate.
 
+*Assumes an environment using CommonJS*
+
 
 app.js - ES6
 
@@ -465,14 +495,7 @@ console.log("2π = " + math.sum(math.pi, math.pi));
 app.js - ES5
 
 ```js
-"use strict";
-
-var _interopRequire = function (obj) {
-  return obj && (obj["default"] || obj);
-};
-
-var math = _interopRequire(require("lib/math"));
-
+var math = require("lib/math");
 console.log("2π = " + math.sum(math.pi, math.pi));
 ```
 
@@ -488,8 +511,6 @@ export var pi = 3.141593;
 lib/math/js - ES5
 
 ```js
-"use strict";
-
 exports.sum = sum;
 function sum(x, y) {
   return x + y;
@@ -510,7 +531,7 @@ export default function(x) {
 lib/mathplusplus.js - ES5
 
 ```js
-"use strict";
+var Math = require("lib/math")));
 
 var _extends = function (target) {
   for (var i = 1; i < arguments.length; i++) {
@@ -522,22 +543,6 @@ var _extends = function (target) {
 
   return target;
 };
-
-var _interopRequireWildcard = function (obj) {
-  return obj && obj.constructor === Object ? obj : {
-    "default": obj
-  };
-};
-
-var _exportsWildcard = function (obj) {
-  for (var i in obj) {
-    if (exports[i] !== undefined) {
-      exports[i] = obj[i];
-    }
-  }
-};
-
-_exportsWildcard(_interopRequireWildcard(require("lib/math")));
 
 var e = exports.e = 2.71828182846;
 exports["default"] = function (x) {
