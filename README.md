@@ -6,7 +6,7 @@
 
 An arrow function expression (also known as fat arrow function) has a shorter syntax compared to function expressions
 and lexically binds the this value. Arrow functions are always anonymous.
-sy
+sys
 ES6:
 
 ```js
@@ -362,14 +362,12 @@ The interface is similar to the iterators-interface. Iterating with a `for..of` 
 ES6:
 
 ```js
+// Behind the scenes, this will get an iterator from the array and loop through it, getting values from it.
 for (let element of [1, 2, 3]) {
   console.log(element);
 }
-
 // => 1 2 3
 ```
-
-Behind the scenes, this will get an iterator from the array and loop through it, getting values from it.
 
 ES6 (without using `for-of`, if `Symbol` is supported):
 
