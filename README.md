@@ -707,7 +707,7 @@ ES5:
 "use strict";
 
 var _toArray = function (arr) {
-  return Array.isArray(arr) ? arr : Array.from(arr);
+  return Array.isArray(arr) ? arr : [].slice.call(arr);
 };
 
 function add(a, b) {
