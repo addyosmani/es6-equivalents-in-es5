@@ -157,7 +157,7 @@ console.log("my favorite number is still: " + favorite);
 ## Template Literals
 
 ES6 Template Literals are strings that can include <strong>embedded expressions</strong>. This is sometimes referred
-to as string interoplation.
+to as string interpolation.
 
 ES6:
 
