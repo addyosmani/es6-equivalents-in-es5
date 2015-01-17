@@ -11,26 +11,41 @@ ES6:
 
 ```js
 [1, 2, 3].map(n => n * 2);
+// -> [ 2, 4, 6 ]
 ```
 
 ES5 equivalent:
 
 ```js
 [1, 2, 3].map(function(n) { return n * 2; });
+// -> [ 2, 4, 6 ]
 ```
 
 ES6:
 
 ```js
+var evens = [2, 4, 6, 8, 10];
+
 // Expression bodies
 var odds = evens.map(v => v + 1);
 var nums = evens.map((v, i) => v + i);
 
+console.log(odds);
+// -> [3, 5, 7, 9, 11]
+
+console.log(nums);
+// -> [2, 5, 8, 11, 14]
+
 // Statement bodies
+var fives = [];
+nums = [1, 2, 5, 15, 25, 32];
 nums.forEach(v => {
   if (v % 5 === 0)
     fives.push(v);
 });
+
+console.log(fives);
+// -> [5, 15, 25]
 
 // Lexical this
 var bob = {
@@ -48,6 +63,8 @@ ES5:
 ```js
 "use strict";
 
+var evens = [2, 4, 6, 8, 10];
+
 // Expression bodies
 var odds = evens.map(function (v) {
   return v + 1;
@@ -56,10 +73,22 @@ var nums = evens.map(function (v, i) {
   return v + i;
 });
 
+console.log(odds);
+// -> [3, 5, 7, 9, 11]
+
+console.log(nums);
+// -> [2, 5, 8, 11, 14]
+
+var fives = [];
+nums = [1, 2, 5, 15, 25, 32];
+
 // Statement bodies
 nums.forEach(function (v) {
   if (v % 5 === 0) fives.push(v);
 });
+
+console.log(fives);
+// -> [5, 15, 25]
 
 // Lexical this
 var bob = {
