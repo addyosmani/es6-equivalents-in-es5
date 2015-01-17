@@ -633,7 +633,8 @@ var object = {
     return this.value;
   }
 };
-console.assert(object.toString() === 42);
+console.log(object.toString() === 42);
+// -> true
 ```
 
 ES5:
@@ -647,7 +648,8 @@ var object = {
     return this.value;
   }
 };
-console.assert(object.toString() === 42);
+console.log(object.toString() === 42);
+// -> true
 ```
 
 ## Object Initializer Shorthand
@@ -698,7 +700,8 @@ function f(x, ...y) {
   // y is an Array
   return x * y.length;
 }
-console.assert(f(3, "hello", true) == 6);
+console.log(f(3, "hello", true) == 6);
+// -> true
 ```
 
 ES5:
@@ -716,7 +719,8 @@ function f(x) {
   // y is an Array
   return x * y.length;
 }
-console.assert(f(3, "hello", true) == 6);
+console.log(f(3, "hello", true) == 6);
+// -> true
 ```
 
 ## Spread Operator
@@ -788,31 +792,13 @@ var handler = {
 };
 
 var p = new Proxy(target, handler);
-console.assert(p() === 'I am the proxy');
+console.log(p() === 'I am the proxy');
+// -> true
 ```
 
 ES5:
 
-```js
-"use strict";
-var target = function () {
-  return "I am the target";
-};
-var handler = {
-  apply: function (receiver) {
-    var args = [];
-
-    for (var _key = 1; _key < arguments.length; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    return "I am the proxy";
-  }
-};
-
-var p = new Proxy(target, handler);
-console.assert(p() === "I am the proxy");
-```
+?
 
 ## About
 
