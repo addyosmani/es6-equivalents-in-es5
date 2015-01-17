@@ -487,17 +487,17 @@ hw.echo();
 ES5 (approximate):
 
 ```js
-var Hello = function Hello(name) {
+function Hello(name) {
   this.name = name;
-};
+}
 
 Hello.prototype.hello = function hello() {
   return "Hello " + this.name + "!";
 };
 
-var HelloWorld = function HelloWorld() {
+function HelloWorld() {
   Hello.call(this, "World");
-};
+}
 
 HelloWorld.prototype = Object.create(Hello.prototype);
 
