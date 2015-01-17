@@ -477,6 +477,8 @@ var hw = new HelloWorld();
 hw.echo();
 ```
 
+A more faithful (albeit, slightly verbose) interpretation can be found in this [6to5](http://goo.gl/573aDy) output.
+
 ## Modules
 
 Modules are mostly implemented, with some parts of the Loader API still to be corrected. Modules try to solve many
