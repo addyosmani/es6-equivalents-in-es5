@@ -456,10 +456,7 @@ var HelloWorld = function HelloWorld() {
   Hello.call(this, "World");
 };
 
-var HelloWorldPrototype = function() {};
-HelloWorldPrototype.prototype = Hello.prototype;
-HelloWorld.prototype = new HelloWorldPrototype();
-HelloWorld.prototype.constructor = HelloWorld;
+HelloWorld.prototype = Object.create(Hello.prototype);
 
 HelloWorld.prototype.echo = function echo() {
   alert(Hello.prototype.hello.call(this));
