@@ -352,6 +352,11 @@ ES6:
 function greet(msg="hello",name="world"){
   console.log(msg,name);
 }
+
+greet();
+// -> hello world
+greet('hey');
+// -> hey world
 ```
 
 ES5:
@@ -364,6 +369,11 @@ function greet() {
   var name = arguments[1] === undefined ? "world" : arguments[1];
   console.log(msg, name);
 }
+
+greet();
+// -> hello world
+greet('hey');
+// -> hey world
 ```
 
 ES6:
