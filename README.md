@@ -468,6 +468,10 @@ class Hello {
   hello() {
     return "Hello " + this.name + "!";
   }
+  
+  static sayHelloAll(){
+    return "Hello everyone!";
+  }
 }
 
 class HelloWorld extends Hello {
@@ -482,6 +486,8 @@ class HelloWorld extends Hello {
 
 var hw = new HelloWorld();
 hw.echo();
+
+alert(Hello.sayHelloAll());
 ```
 
 ES5 (approximate):
@@ -493,6 +499,10 @@ function Hello(name) {
 
 Hello.prototype.hello = function hello() {
   return "Hello " + this.name + "!";
+};
+
+Hello.sayHelloAll = function(){
+  return "Hello everyone!";
 };
 
 function HelloWorld() {
@@ -507,6 +517,8 @@ HelloWorld.prototype.echo = function echo() {
 
 var hw = new HelloWorld();
 hw.echo();
+
+alert(Hello.sayHelloAll());
 ```
 
 A more faithful (albeit, slightly verbose) interpretation can be found in this [6to5](http://goo.gl/573aDy) output.
