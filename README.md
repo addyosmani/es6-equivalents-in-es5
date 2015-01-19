@@ -17,7 +17,7 @@ ES6:
 ES5 equivalent:
 
 ```js
-[1, 2, 3].map(function(n) { return n * 2; });
+[1, 2, 3].map(function(n) { return n * 2; }, this);
 // -> [ 2, 4, 6 ]
 ```
 
@@ -68,10 +68,10 @@ var evens = [2, 4, 6, 8, 10];
 // Expression bodies
 var odds = evens.map(function (v) {
   return v + 1;
-});
+}, this);
 var nums = evens.map(function (v, i) {
   return v + i;
-});
+}, this);
 
 console.log(odds);
 // -> [3, 5, 7, 9, 11]
@@ -85,7 +85,7 @@ nums = [1, 2, 5, 15, 25, 32];
 // Statement bodies
 nums.forEach(function (v) {
   if (v % 5 === 0) fives.push(v);
-});
+}, this);
 
 console.log(fives);
 // -> [5, 15, 25]
@@ -98,7 +98,7 @@ var bob = {
     var _this = this;
     this._friends.forEach(function (f) {
       return console.log(_this._name + " knows " + f);
-    });
+    }, this);
   }
 };
 ```
@@ -140,11 +140,15 @@ var a = 5;
 var b = 10;
 
 if (a === 5) {
-  var _a = 4;
-  var b = 1;
+  // technically is more like the follwoing
+  (function(){
+    var a = 4;
+    b = 1;
 
-  console.log(_a); // 4
-  console.log(b); // 1
+    console.log(a); // 4
+    console.log(b); // 1
+  }());
+
 }
 
 console.log(a); // 5
@@ -174,8 +178,9 @@ ES5:
 "use strict";
 // define favorite as a non-writable "constant" and give it the value 7
 Object.defineProperties(window, {
-  "favorite": { value: 7, writable: false }
+  "favorite": { value: 7, enumerable: true }
 });
+// ^ descriptors are by default false and const are enumerable
 var favorite = 7;
 // Attempt to overwrite the constant
 favorite = 15;
@@ -233,6 +238,9 @@ console.log("The number of JS frameworks is " + (a + b) + " and not " + (2 * a +
 
 // Multi-line strings:
 console.log("string text line 1\nstring text line 2");
+// Some engines also support..
+console.log("string text line 1\
+string text line 2");
 
 // Functions inside expressions
 function fn() {
@@ -303,6 +311,14 @@ var foo = _ref.foo;
 var bar = _ref.bar;
 ```
 
+ES3:
+
+```
+with({foo: "lorem", bar: "ipsum"}) {
+  // foo => lorem and bar => ipsum
+}
+```
+
 ES6:
 
 ```js
@@ -338,7 +354,19 @@ var a = _ref2[0];
 var b = _ref2[2];
 ```
 
-ES5?
+ES5:
+
+```
+String.prototype.asNamedList = function () {
+  return this.split(/\s*,\s*/).map(function (name, i) {
+    return name ? ('var ' + name + '=slice(' + i + ', ' + (i + 1) + ')[0]') : '';
+  }).join(';');
+};
+
+with([1,2,3]) {
+  eval('a, , b'.asNamedList());
+}
+```
 
 
 ## Default Parameters
@@ -365,9 +393,25 @@ ES5:
 "use strict";
 
 function greet() {
+  // unfair ... if you access arguments[0] like this you can simply
+  // access the msg variable name instead
   var msg = arguments[0] === undefined ? "hello" : arguments[0];
   var name = arguments[1] === undefined ? "world" : arguments[1];
   console.log(msg, name);
+}
+
+function greet(msg, name) {
+  (msg === undefined) && (msg = "hello");
+  (name === undefined) && (name = "world");
+  console.log(msg,name);
+}
+
+// using basic utility that check against undefined
+function greet(msg, name) {
+  console.log(
+    defaults(msg, "hello"),
+    defaults(name, "world")
+  );
 }
 
 greet();
@@ -391,11 +435,12 @@ ES5:
 ```js
 "use strict";
 
-function f(x) {
-  var y = arguments[1] === undefined ? 12 : arguments[1];
-  // y is 12 if not passed (or passed as undefined)
+function f(x, y) {
+  if (y === undefined) y = 12;
   return x + y;
 }
+
+
 f(3) == 15;
 ```
 
@@ -442,10 +487,9 @@ a.forEach(function(entry) {
 // => 1 2 3
 
 // Using a for loop
-var index;
 var a = [1,2,3];
-for (index = 0; index < a.length; ++index) {
-    console.log(a[index]);
+for (var i = 0; i < a.length; ++i) {
+    console.log(a[i]);
 }
 // => 1 2 3
 ```
@@ -677,7 +721,7 @@ function getPoint() {
 
   return {x, y};
 }
-expect(getPoint()).to.be.eql({
+console.log(getPoint() === {
   x: 1,
   y: 10
 });
@@ -694,7 +738,7 @@ function getPoint() {
 
   return { x: x, y: y };
 }
-expect(getPoint()).to.be.eql({
+console.log(getPoint() === {
   x: 1,
   y: 10
 });
@@ -723,10 +767,7 @@ ES5:
 
 function f(x) {
   var y = [];
-
-  for (var _key = 1; _key < arguments.length; _key++) {
-    y[_key - 1] = arguments[_key];
-  }
+  y.push.apply(y, arguments) && y.shift();
 
   // y is an Array
   return x * y.length;
@@ -765,8 +806,7 @@ function add(a, b) {
 }
 
 var nums = [5, 4];
-
-console.log(add.apply(undefined, _toArray(nums)));
+console.log(add.apply(null, _toArray(nums)));
 ```
 
 ES6:
@@ -788,7 +828,7 @@ function f(x, y, z) {
   return x + y + z;
 }
 // Pass each elem of array as argument
-f.apply(undefined, [1, 2, 3]) == 6;
+f.apply(null, [1, 2, 3]) == 6;
 ```
 
 ## Proxying a function object
@@ -810,7 +850,7 @@ console.log(p() === 'I am the proxy');
 
 ES5:
 
-?
+No proxy in ES5, hard to intercept __noSuchMethod__ and others.
 
 ## About
 
