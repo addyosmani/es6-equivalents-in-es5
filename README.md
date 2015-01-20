@@ -356,7 +356,7 @@ var b = _ref2[2];
 
 ES5:
 
-```
+```js
 String.prototype.asNamedList = function () {
   return this.split(/\s*,\s*/).map(function (name, i) {
     return name ? ('var ' + name + '=slice(' + i + ', ' + (i + 1) + ')[0]') : '';
