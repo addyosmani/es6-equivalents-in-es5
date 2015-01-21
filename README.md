@@ -238,8 +238,8 @@ console.log("The number of JS frameworks is " + (a + b) + " and not " + (2 * a +
 
 // Multi-line strings:
 console.log("string text line 1\nstring text line 2");
-// Some engines also support..
-console.log("string text line 1\
+// Or, alternatively:
+console.log("string text line 1\n\
 string text line 2");
 
 // Functions inside expressions
