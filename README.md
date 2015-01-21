@@ -622,7 +622,7 @@ export default function(x) {
 lib/mathplusplus.js - ES5
 
 ```js
-var Math = require("lib/math")));
+var Math = require("lib/math");
 
 var _extends = function (target) {
   for (var i = 1; i < arguments.length; i++) {
