@@ -50,11 +50,11 @@ console.log(fives);
 
 // Lexical this
 var bob = {
-  _name: "Bob",
+  _name: 'Bob',
   _friends: [],
   printFriends() {
     this._friends.forEach(f =>
-      console.log(this._name + " knows " + f));
+      console.log(this._name + ' knows ' + f));
   }
 }
 ```
@@ -62,7 +62,7 @@ var bob = {
 ES5:
 
 ```js
-"use strict";
+'use strict';
 
 var evens = [2, 4, 6, 8, 10];
 
@@ -95,12 +95,12 @@ console.log(fives);
 
 // Lexical this
 var bob = {
-  _name: "Bob",
+  _name: 'Bob',
   _friends: [],
   printFriends: function printFriends() {
     var _this = this;
     this._friends.forEach(function (f) {
-      return console.log(_this._name + " knows " + f);
+      return console.log(_this._name + ' knows ' + f);
     }, this);
   }
 };
@@ -116,7 +116,7 @@ ES6:
 // let declares a block scope local variable,
 // optionally initializing it to a value in ES6
 
-"use strict";
+'use strict';
 
 var a = 5;
 var b = 10;
@@ -136,7 +136,7 @@ console.log(b); // 1
 ES5:
 
 ```js
-"use strict";
+'use strict';
 
 var a = 5;
 var b = 10;
@@ -161,14 +161,14 @@ ES6:
 
 ```js
 // const creates a read-only named constant in ES6.
-"use strict";
+'use strict';
 // define favorite as a constant and give it the value 7
 const favorite = 7;
 // Attempt to overwrite the constant
 try {
   favorite = 15;
 } catch (err) {
-  console.log("my favorite number is still: " + favorite);
+  console.log('my favorite number is still: ' + favorite);
   // will still print 7
 }
 ```
@@ -176,8 +176,8 @@ try {
 ES5:
 
 ```js
-"use strict";
-// define favorite as a non-writable "constant" and give it the value 7
+'use strict';
+// define favorite as a non-writable `constant` and give it the value 7
 Object.defineProperties(window, {
   favorite: {
     value: 7,
@@ -189,7 +189,7 @@ var favorite = 7;
 // Attempt to overwrite the constant
 favorite = 15;
 // will still print 7
-console.log("my favorite number is still: " + favorite);
+console.log('my favorite number is still: ' + favorite);
 ```
 
 ## Template Literals
@@ -200,11 +200,11 @@ ES6:
 
 ```js
 // Basic usage with an expression placeholder
-var person = "Addy Osmani";
+var person = 'Addy Osmani';
 console.log(`Yo! My name is ${person}!`);
 
 // Expressions work just as well with object literals
-var user = {name: "Caitlin Potter"};
+var user = {name: 'Caitlin Potter'};
 console.log(`Thanks for getting this into V8, ${user.name}.`);
 
 // Expression interpolation. One use is readable inline math.
@@ -217,39 +217,39 @@ console.log(`string text line 1
 string text line 2`);
 
 // Functions inside expressions
-function fn() { return "result"; }
+function fn() { return 'result'; }
 console.log(`foo ${fn()} bar`);
 ```
 
 ES5:
 
 ```js
-"use strict";
+'use strict';
 
 // Basic usage with an expression placeholder
-var person = "Addy Osmani";
-console.log("Yo! My name is " + person + "!");
+var person = 'Addy Osmani';
+console.log('Yo! My name is ' + person + '!');
 
 // Expressions work just as well with object literals
-var user = { name: "Caitlin Potter" };
-console.log("Thanks for getting this into V8, " + user.name + ".");
+var user = { name: 'Caitlin Potter' };
+console.log('Thanks for getting this into V8, ' + user.name + '.');
 
 // Expression interpolation. One use is readable inline math.
 var a = 50;
 var b = 100;
-console.log("The number of JS frameworks is " + (a + b) + " and not " + (2 * a + b) + ".");
+console.log('The number of JS frameworks is ' + (a + b) + ' and not ' + (2 * a + b) + '.');
 
 // Multi-line strings:
-console.log("string text line 1\nstring text line 2");
+console.log('string text line 1\nstring text line 2');
 // Or, alternatively:
-console.log("string text line 1\n\
-string text line 2");
+console.log('string text line 1\n\
+string text line 2');
 
 // Functions inside expressions
 function fn() {
-  return "result";
+  return 'result';
 }
-console.log("foo " + fn() + " bar");
+console.log('foo ' + fn() + ' bar');
 ```
 
 
@@ -260,32 +260,32 @@ Computed property names allow you to specify properties in object literals based
 ES6:
 
 ```js
-var prefix = "foo";
+var prefix = 'foo';
 var myObject = {
-  [prefix + "bar"]: "hello",
-  [prefix + "baz"]: "world"
+  [prefix + 'bar']: 'hello',
+  [prefix + 'baz']: 'world'
 };
 
-console.log(myObject["foobar"]);
+console.log(myObject['foobar']);
 // -> hello
-console.log(myObject["foobaz"]);
+console.log(myObject['foobaz']);
 // -> world
 ```
 
 ES5:
 
 ```js
-"use strict";
+'use strict';
 
-var prefix = "foo";
+var prefix = 'foo';
 var myObject = {};
 
-myObject[prefix + "bar"] = "hello";
-myObject[prefix + "baz"] = "world";
+myObject[prefix + 'bar'] = 'hello';
+myObject[prefix + 'baz'] = 'world';
 
-console.log(myObject["foobar"]);
+console.log(myObject['foobar']);
 // -> hello
-console.log(myObject["foobaz"]);
+console.log(myObject['foobaz']);
 // -> world
 ```
 
@@ -297,16 +297,16 @@ The destructuring assignment syntax is a JavaScript expression that makes it pos
 ES6:
 
 ```js
-var {foo, bar} = {foo: "lorem", bar: "ipsum"};
+var {foo, bar} = {foo: 'lorem', bar: 'ipsum'};
 // foo => lorem and bar => ipsum
 ```
 
 ES5:
 
 ```js
-"use strict";
+'use strict';
 
-var _ref = { foo: "lorem", bar: "ipsum" };
+var _ref = { foo: 'lorem', bar: 'ipsum' };
 
 // foo => lorem and bar => ipsum
 var foo = _ref.foo;
@@ -316,7 +316,7 @@ var bar = _ref.bar;
 ES3:
 
 ```
-with({foo: "lorem", bar: "ipsum"}) {
+with({foo: 'lorem', bar: 'ipsum'}) {
   // foo => lorem and bar => ipsum
 }
 ```
@@ -330,7 +330,7 @@ var [a, , b] = [1,2,3];
 ES6 (shimming using `Symbol.iterator`):
 
 ```js
-"use strict";
+'use strict';
 
 var _slicedToArray = function (arr, i) {
   if (Array.isArray(arr)) {
@@ -380,40 +380,40 @@ Default parameters allow your functions to have optional arguments without needi
 ES6:
 
 ```js
-function greet(msg="hello", name="world") {
+function greet(msg='hello', name='world') {
   console.log(msg,name);
 }
 
 greet();
 // -> hello world
-greet("hey");
+greet('hey');
 // -> hey world
 ```
 
 ES5:
 
 ```js
-"use strict";
+'use strict';
 
 function greet() {
   // unfair ... if you access arguments[0] like this you can simply
   // access the msg variable name instead
-  var msg = arguments[0] === undefined ? "hello" : arguments[0];
-  var name = arguments[1] === undefined ? "world" : arguments[1];
+  var msg = arguments[0] === undefined ? 'hello' : arguments[0];
+  var name = arguments[1] === undefined ? 'world' : arguments[1];
   console.log(msg, name);
 }
 
 function greet(msg, name) {
-  (msg === undefined) && (msg = "hello");
-  (name === undefined) && (name = "world");
+  (msg === undefined) && (msg = 'hello');
+  (name === undefined) && (name = 'world');
   console.log(msg,name);
 }
 
 // using basic utility that check against undefined
 function greet(msg, name) {
   console.log(
-    defaults(msg, "hello"),
-    defaults(name, "world")
+    defaults(msg, 'hello'),
+    defaults(name, 'world')
   );
 }
 
@@ -437,7 +437,7 @@ f(3) === 15;
 ES5:
 
 ```js
-"use strict";
+'use strict';
 
 function f(x, y) {
   if (y === undefined) {
@@ -468,7 +468,7 @@ for (let element of [1, 2, 3]) {
 ES6 (without using `for-of`, if `Symbol` is supported):
 
 ```js
-"use strict";
+'use strict';
 
 for (var _iterator = [1, 2, 3][Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {
   var element = _step.value;
@@ -516,17 +516,17 @@ class Hello {
   }
 
   hello() {
-    return "Hello " + this.name + "!";
+    return 'Hello ' + this.name + '!';
   }
 
   static sayHelloAll() {
-    return "Hello everyone!";
+    return 'Hello everyone!';
   }
 }
 
 class HelloWorld extends Hello {
   constructor() {
-    super("World");
+    super('World');
   }
 
   echo() {
@@ -548,15 +548,15 @@ function Hello(name) {
 }
 
 Hello.prototype.hello = function hello() {
-  return "Hello " + this.name + "!";
+  return 'Hello ' + this.name + '!';
 };
 
 Hello.sayHelloAll = function () {
-  return "Hello everyone!";
+  return 'Hello everyone!';
 };
 
 function HelloWorld() {
-  Hello.call(this, "World");
+  Hello.call(this, 'World');
 }
 
 HelloWorld.prototype = Object.create(Hello.prototype);
@@ -583,15 +583,15 @@ Modules are mostly implemented, with some parts of the Loader API still to be co
 app.js - ES6
 
 ```js
-import math from "lib/math";
-console.log("2π = " + math.sum(math.pi, math.pi));
+import math from 'lib/math';
+console.log('2π = ' + math.sum(math.pi, math.pi));
 ```
 
 app.js - ES5
 
 ```js
-var math = require("lib/math");
-console.log("2π = " + math.sum(math.pi, math.pi));
+var math = require('lib/math');
+console.log('2π = ' + math.sum(math.pi, math.pi));
 ```
 
 lib/math.js - ES6
@@ -616,7 +616,7 @@ var pi = exports.pi = 3.141593;
 lib/mathplusplus.js - ES6
 
 ```js
-export * from "lib/math";
+export * from 'lib/math';
 export var e = 2.71828182846;
 export default function(x) {
   return Math.exp(x);
@@ -626,7 +626,7 @@ export default function(x) {
 lib/mathplusplus.js - ES5
 
 ```js
-var Math = require("lib/math");
+var Math = require('lib/math');
 
 var _extends = function (target) {
   for (var i = 1; i < arguments.length; i++) {
@@ -640,11 +640,11 @@ var _extends = function (target) {
 };
 
 var e = exports.e = 2.71828182846;
-exports["default"] = function (x) {
+exports['default'] = function (x) {
   return Math.exp(x);
 };
 
-module.exports = _extends(exports["default"], exports);
+module.exports = _extends(exports['default'], exports);
 ```
 
 ## Numeric Literals
@@ -671,7 +671,7 @@ console.assert(octal === [0, 1, 8, 63]);
 ES5:
 
 ```js
-"use strict";
+'use strict';
 
 var binary = [0, 1, 3];
 console.assert(binary === [0, 1, 3]);
@@ -701,7 +701,7 @@ console.log(object.toString() === 42);
 ES5:
 
 ```js
-"use strict";
+'use strict';
 
 var object = {
   value: 42,
@@ -737,7 +737,7 @@ console.log(getPoint() === {
 ES5:
 
 ```js
-"use strict";
+'use strict';
 
 function getPoint() {
   var x = 1;
@@ -765,14 +765,14 @@ function f(x, ...y) {
   return x * y.length;
 }
 
-console.log(f(3, "hello", true) === 6);
+console.log(f(3, 'hello', true) === 6);
 // -> true
 ```
 
 ES5:
 
 ```js
-"use strict";
+'use strict';
 
 function f(x) {
   var y = [];
@@ -782,7 +782,7 @@ function f(x) {
   return x * y.length;
 }
 
-console.log(f(3, "hello", true) === 6);
+console.log(f(3, 'hello', true) === 6);
 // -> true
 ```
 
@@ -805,7 +805,7 @@ console.log(add(...nums));
 ES5:
 
 ```js
-"use strict";
+'use strict';
 
 var _toArray = function (arr) {
   return Array.isArray(arr) ? arr : [].slice.call(arr);
@@ -832,7 +832,7 @@ f(...[1,2,3]) === 6;
 ES5:
 
 ```js
-"use strict";
+'use strict';
 
 function f(x, y, z) {
   return x + y + z;
