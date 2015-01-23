@@ -178,7 +178,7 @@ ES5:
 ```js
 "use strict";
 // define favorite as a non-writable "constant" and give it the value 7
-Object.defineProperties(window, {
+Object.defineProperties(this, {
   favorite: {
     value: 7,
     enumerable: true
