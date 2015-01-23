@@ -1,12 +1,13 @@
-# <img src="http://i.imgur.com/yy1sACZ.png" width="100px"/> ECMAScript 6 equivalents in ES5
+# <img src="http://i.imgur.com/yy1sACZ.png" width="100px"> ECMAScript 6 equivalents in ES5
 
 *Please note this document is very much a work in progress. Contributions are welcome.*
 
+
 ## Arrow Functions
 
-An arrow function expression (also known as fat arrow function) has a shorter syntax compared to function expressions
-and lexically binds the this value. Arrow functions are always anonymous.
-sys
+An arrow function expression (also known as fat arrow function) has a shorter syntax compared to function expressions and lexically binds the this value. Arrow functions are always anonymous.
+
+
 ES6:
 
 ```js
@@ -84,7 +85,9 @@ nums = [1, 2, 5, 15, 25, 32];
 
 // Statement bodies
 nums.forEach(function (v) {
-  if (v % 5 === 0) fives.push(v);
+  if (v % 5 === 0) {
+    fives.push(v);
+  }
 }, this);
 
 console.log(fives);
@@ -105,8 +108,7 @@ var bob = {
 
 ## Block Scoping Functions
 
-Block scoped bindings provide scopes other than the function and top level scope. This ensures your variables don't
-leak out of the scope they're defined:
+Block scoped bindings provide scopes other than the function and top level scope. This ensures your variables don't leak out of the scope they're defined:
 
 ES6:
 
@@ -141,14 +143,13 @@ var b = 10;
 
 if (a === 5) {
   // technically is more like the following
-  (function(){
+  (function () {
     var a = 4;
     b = 1;
 
     console.log(a); // 4
     console.log(b); // 1
-  }());
-
+  })();
 }
 
 console.log(a); // 5
@@ -166,7 +167,7 @@ const favorite = 7;
 // Attempt to overwrite the constant
 try {
   favorite = 15;
-} catch (e) {
+} catch (err) {
   console.log("my favorite number is still: " + favorite);
   // will still print 7
 }
@@ -178,7 +179,10 @@ ES5:
 "use strict";
 // define favorite as a non-writable "constant" and give it the value 7
 Object.defineProperties(window, {
-  "favorite": { value: 7, enumerable: true }
+  favorite: {
+    value: 7,
+    enumerable: true
+  }
 });
 // ^ descriptors are by default false and const are enumerable
 var favorite = 7;
@@ -190,18 +194,17 @@ console.log("my favorite number is still: " + favorite);
 
 ## Template Literals
 
-ES6 Template Literals are strings that can include <strong>embedded expressions</strong>. This is sometimes referred
-to as string interpolation.
+ES6 Template Literals are strings that can include <strong>embedded expressions</strong>. This is sometimes referred to as string interpolation.
 
 ES6:
 
 ```js
 // Basic usage with an expression placeholder
-var person = 'Addy Osmani';
+var person = "Addy Osmani";
 console.log(`Yo! My name is ${person}!`);
 
 // Expressions work just as well with object literals
-var user = {name: 'Caitlin Potter'};
+var user = {name: "Caitlin Potter"};
 console.log(`Thanks for getting this into V8, ${user.name}.`);
 
 // Expression interpolation. One use is readable inline math.
@@ -288,8 +291,7 @@ console.log(myObject["foobaz"]);
 
 ## Destructuring Assignment
 
-The destructuring assignment syntax is a JavaScript expression that makes it possible to extract data from arrays
-or objects using a syntax that mirrors the construction of array and object literals.
+The destructuring assignment syntax is a JavaScript expression that makes it possible to extract data from arrays or objects using a syntax that mirrors the construction of array and object literals.
 
 
 ES6:
@@ -339,7 +341,9 @@ var _slicedToArray = function (arr, i) {
     for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {
       _arr.push(_step.value);
 
-      if (i && _arr.length === i) break;
+      if (i && _arr.length === i) {
+        break;
+      }
     }
 
     return _arr;
@@ -371,19 +375,18 @@ with([1,2,3]) {
 
 ## Default Parameters
 
-Default parameters allow your functions to have optional arguments without needing to check arguments.length or
-check for undefined.
+Default parameters allow your functions to have optional arguments without needing to check arguments.length or check for undefined.
 
 ES6:
 
 ```js
-function greet(msg="hello",name="world"){
+function greet(msg="hello", name="world") {
   console.log(msg,name);
 }
 
 greet();
 // -> hello world
-greet('hey');
+greet("hey");
 // -> hey world
 ```
 
@@ -427,7 +430,8 @@ function f(x, y=12) {
   // y is 12 if not passed (or passed as undefined)
   return x + y;
 }
-f(3) == 15
+
+f(3) === 15;
 ```
 
 ES5:
@@ -436,12 +440,14 @@ ES5:
 "use strict";
 
 function f(x, y) {
-  if (y === undefined) y = 12;
+  if (y === undefined) {
+    y = 12;
+  }
+
   return x + y;
 }
 
-
-f(3) == 15;
+f(3) === 15;
 ```
 
 ## Iterators And For-Of
@@ -476,12 +482,12 @@ ES5 (approximates):
 
 ```js
 // Using forEach()
-// Doesn't require declaring indexing and entry variables in your containing 
-// scope. They get supplied as arguments to the iterator and are scoped to just 
+// Doesn't require declaring indexing and element variables in your containing
+// scope. They get supplied as arguments to the iterator and are scoped to just
 // that iteration.
 var a = [1,2,3];
-a.forEach(function(entry) {
-    console.log(entry);
+a.forEach(function (element) {
+    console.log(element);
 });
 
 // => 1 2 3
@@ -494,7 +500,7 @@ for (var i = 0; i < a.length; ++i) {
 // => 1 2 3
 ```
 
-Note the use of `Symbol`. The ES5 equivalent would require a Symbol polyfill in order to correctly function. 
+Note the use of `Symbol`. The ES5 equivalent would require a Symbol polyfill in order to correctly function.
 
 ## Classes
 
@@ -512,8 +518,8 @@ class Hello {
   hello() {
     return "Hello " + this.name + "!";
   }
-  
-  static sayHelloAll(){
+
+  static sayHelloAll() {
     return "Hello everyone!";
   }
 }
@@ -545,7 +551,7 @@ Hello.prototype.hello = function hello() {
   return "Hello " + this.name + "!";
 };
 
-Hello.sayHelloAll = function(){
+Hello.sayHelloAll = function () {
   return "Hello everyone!";
 };
 
@@ -569,9 +575,7 @@ A more faithful (albeit, slightly verbose) interpretation can be found in this [
 
 ## Modules
 
-Modules are mostly implemented, with some parts of the Loader API still to be corrected. Modules try to solve many
-issues in dependencies and deployment, allowing users to create modules with explicit exports, import specific
-exported names from those modules, and keep these names separate.
+Modules are mostly implemented, with some parts of the Loader API still to be corrected. Modules try to solve many issues in dependencies and deployment, allowing users to create modules with explicit exports, import specific exported names from those modules, and keep these names separate.
 
 *Assumes an environment using CommonJS*
 
@@ -689,6 +693,7 @@ var object = {
     return this.value;
   }
 };
+
 console.log(object.toString() === 42);
 // -> true
 ```
@@ -704,6 +709,7 @@ var object = {
     return this.value;
   }
 };
+
 console.log(object.toString() === 42);
 // -> true
 ```
@@ -721,6 +727,7 @@ function getPoint() {
 
   return {x, y};
 }
+
 console.log(getPoint() === {
   x: 1,
   y: 10
@@ -738,6 +745,7 @@ function getPoint() {
 
   return { x: x, y: y };
 }
+
 console.log(getPoint() === {
   x: 1,
   y: 10
@@ -756,7 +764,8 @@ function f(x, ...y) {
   // y is an Array
   return x * y.length;
 }
-console.log(f(3, "hello", true) == 6);
+
+console.log(f(3, "hello", true) === 6);
 // -> true
 ```
 
@@ -772,7 +781,8 @@ function f(x) {
   // y is an Array
   return x * y.length;
 }
-console.log(f(3, "hello", true) == 6);
+
+console.log(f(3, "hello", true) === 6);
 // -> true
 ```
 
@@ -816,7 +826,7 @@ function f(x, y, z) {
   return x + y + z;
 }
 // Pass each elem of array as argument
-f(...[1,2,3]) == 6
+f(...[1,2,3]) === 6;
 ```
 
 ES5:
@@ -828,7 +838,7 @@ function f(x, y, z) {
   return x + y + z;
 }
 // Pass each elem of array as argument
-f.apply(null, [1, 2, 3]) == 6;
+f.apply(null, [1, 2, 3]) === 6;
 ```
 
 ## Proxying a function object
@@ -836,7 +846,10 @@ f.apply(null, [1, 2, 3]) == 6;
 ES6:
 
 ```js
-var target = function () { return 'I am the target'; };
+var target = function () {
+  return 'I am the target';
+};
+
 var handler = {
   apply: function (receiver, ...args) {
     return 'I am the proxy';
@@ -852,6 +865,7 @@ ES5:
 
 No proxy in ES5, hard to intercept __noSuchMethod__ and others.
 
+
 ## About
 
 Inspired by:
@@ -860,6 +874,7 @@ Inspired by:
 * [ES6 Features](https://github.com/lukehoban/es6features)
 * [ECMAScript 6 support in Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla)
 * [6to5](https://6to5.org)
+
 
 ## License
 
