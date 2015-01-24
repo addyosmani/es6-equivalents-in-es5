@@ -98,9 +98,8 @@ var bob = {
   _name: 'Bob',
   _friends: [],
   printFriends: function printFriends() {
-    var _this = this;
     this._friends.forEach(function (f) {
-      return console.log(_this._name + ' knows ' + f);
+      return console.log(this._name + ' knows ' + f);
     }, this);
   }
 };
