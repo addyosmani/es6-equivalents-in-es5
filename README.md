@@ -593,6 +593,18 @@ var math = require('lib/math');
 console.log('2π = ' + math.sum(math.pi, math.pi));
 ```
 
+stream.js - ES6
+
+```js
+import {Readable} from 'stream';
+```
+
+stream.js - ES5
+
+```js
+var Readable = require('stream').Readbale;
+```
+
 lib/math.js - ES6
 
 ```js
