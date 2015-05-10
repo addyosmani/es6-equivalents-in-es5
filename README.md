@@ -570,7 +570,7 @@ hw.echo();
 alert(Hello.sayHelloAll());
 ```
 
-A more faithful (albeit, slightly verbose) interpretation can be found in this [6to5](http://goo.gl/573aDy) output.
+A more faithful (albeit, slightly verbose) interpretation can be found in this [Babel](http://goo.gl/573aDy) output.
 
 ## Modules
 
@@ -872,7 +872,7 @@ Inspired by:
 * [ES6 Feature Proposals](http://tc39wiki.calculist.org/es6/)
 * [ES6 Features](https://github.com/lukehoban/es6features)
 * [ECMAScript 6 support in Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla)
-* [6to5](https://6to5.org)
+* [Babel](https://babeljs.io)
 * [JS Rocks](http://jsrocks.org/)
 
 
