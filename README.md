@@ -874,7 +874,7 @@ Inspired by:
 * [ECMAScript 6 support in Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla)
 * [Babel](https://babeljs.io)
 * [JS Rocks](http://jsrocks.org/)
-
+* [Learn Harmony](http://learnharmony.org/)
 
 ## License
 
