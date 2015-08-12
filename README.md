@@ -2,6 +2,25 @@
 
 *Please note this document is very much a work in progress. Contributions are welcome.*
 
+**Table of contents:**
+
+1. [Arrow Functions](#arrow-functions)
+1. [Block Scoping Functions](#block-scoping-functions)
+1. [Template Literals](#template-literals)
+1. [Computed Property Names](#computed-property-names)
+1. [Destructuring Assignment](#destructuring-assignment)
+1. [Default Parameters](#default-parameters)
+1. [Iterators and For-Of](#iterators-and-for-of)
+1. [Classes](#classes)
+1. [Modules](#modules)
+1. [Nueric Literals](#numeric-literals)
+1. [Property Method Assignment](#property-method-assignment)
+1. [Object Initializer Shorthand](#object-initializer-shorthand)
+1. [Rest Parameters](#rest-parameters)
+1. [Spread Operator](#spread-operator)
+1. [Proxying a function object](#proxying-a-function-object)
+1. [About](#about)
+1. [License](#license)
 
 ## Arrow Functions
 
