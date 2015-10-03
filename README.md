@@ -886,7 +886,7 @@ No proxy in ES5, hard to intercept __noSuchMethod__ and others.
 
 ## Array-like object to array
 
-**Array.from** converts a single argument that is an array-like object or list (eg. arguments, NodeList, DOMTokenList (used by classList), NamedNodeMap (used by attributes property) into a new Array() and returns it.
+**Array.from** converts a single argument that is an array-like object or list (eg. `arguments`, `NodeList`, `DOMTokenList` (used by `classList`), `NamedNodeMap` (used by attributes property) into a new Array() and returns it.
 
 ES6:
 
@@ -914,8 +914,8 @@ ES5:
 
 ```js
 var listFriends = function() {
-  var friends = Array.prototype.slice.call(arguments);
-  friends.forEach(friend => {
+  var friends = [].slice.call(arguments)
+  friends.forEach(function(friend) {
     console.log(friend);
   });
 };
@@ -924,9 +924,8 @@ listFriends('ann', 'bob');
 // -> 'bob'
 
 
-var divs = document.querySelectorAll('div');
-var divsArray = Array.prototype.slice.call(divs);
-divsArray.forEach(node => {
+var divsArray = [].slice.call(document.querySelectorAll('div'));
+divsArray.forEach(function(node) {
     console.log(node);
 });
 // -> <div>...</div>
