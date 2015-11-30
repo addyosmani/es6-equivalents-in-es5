@@ -333,7 +333,7 @@ var bar = _ref.bar;
 
 ES3:
 
-```
+```js
 with({foo: 'lorem', bar: 'ipsum'}) {
   // foo => lorem and bar => ipsum
 }
