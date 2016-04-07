@@ -589,7 +589,7 @@ hw.echo();
 alert(Hello.sayHelloAll());
 ```
 
-A more faithful (albeit, slightly verbose) interpretation can be found in this [Babel](http://goo.gl/573aDy) output.
+A more faithful (albeit, slightly verbose) interpretation can be found in this [Babel](https://goo.gl/ZvEQDq) output.
 
 ## Modules
 
