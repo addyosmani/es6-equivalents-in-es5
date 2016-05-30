@@ -19,6 +19,7 @@
 1. [Rest Parameters](#rest-parameters)
 1. [Spread Operator](#spread-operator)
 1. [Proxying a function object](#proxying-a-function-object)
+1. [Array-like object to array](#array-like-object-to-array)
 1. [About](#about)
 1. [License](#license)
 
@@ -884,6 +885,53 @@ ES5:
 
 No proxy in ES5, hard to intercept __noSuchMethod__ and others.
 
+## Array-like object to array
+
+**Array.from** converts a single argument that is an array-like object or list (eg. `arguments`, `NodeList`, `DOMTokenList` (used by `classList`), `NamedNodeMap` (used by attributes property) into a new Array() and returns it.
+
+ES6:
+
+```js
+var listFriends = function() {
+  var friends = Array.from(arguments);
+  friends.forEach(friend => {
+    console.log(friend);
+  });
+};
+listFriends('ann', 'bob');
+// -> 'ann'
+// -> 'bob'
+
+
+var divs = document.querySelectorAll('div');
+Array.from(divs).forEach(node => {
+    console.log(node);
+});
+// -> <div>...</div>
+// -> <div>...</div>
+```
+
+ES5:
+
+```js
+var listFriends = function() {
+  var friends = [].slice.call(arguments)
+  friends.forEach(function(friend) {
+    console.log(friend);
+  });
+};
+listFriends('ann', 'bob');
+// -> 'ann'
+// -> 'bob'
+
+
+var divsArray = [].slice.call(document.querySelectorAll('div'));
+divsArray.forEach(function(node) {
+    console.log(node);
+});
+// -> <div>...</div>
+// -> <div>...</div>
+```
 
 ## About
 
