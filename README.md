@@ -623,7 +623,7 @@ export function sum(x, y) {
 export var pi = 3.141593;
 ```
 
-lib/math/js - ES5
+lib/math.js - ES5
 
 ```js
 exports.sum = sum;
