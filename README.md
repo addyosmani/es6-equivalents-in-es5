@@ -694,10 +694,19 @@ ES5:
 ```js
 'use strict';
 
-var binary = [0, 1, 3];
+var binary = [
+  parseInt('0', 2),
+  parseInt('1', 2),
+  parseInt('11', 2)
+];
 console.assert(binary === [0, 1, 3]);
 
-var octal = [0, 1, 8, 63];
+var octal = [
+  parseInt('0', 8),
+  parseInt('1', 8),
+  parseInt('10', 8),
+  parseInt('77', 8)
+];
 console.assert(octal === [0, 1, 8, 63]);
 ```
 
