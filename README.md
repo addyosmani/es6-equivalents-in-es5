@@ -579,6 +579,7 @@ function HelloWorld() {
 }
 
 HelloWorld.prototype = Object.create(Hello.prototype);
+HelloWorld.prototype.constructor = HelloWorld;
 HelloWorld.sayHelloAll = Hello.sayHelloAll;
 
 HelloWorld.prototype.echo = function echo() {
