@@ -1,31 +1,31 @@
-# <img src="http://i.imgur.com/yy1sACZ.png" width="100px"> ECMAScript 6 equivalents in ES5
+# <img src="http://i.imgur.com/yy1sACZ.png" width="100px"> ECMAScript 6 与 ES5 的等价
 
-*Please note this document is very much a work in progress. Contributions are welcome.*
 
-**Table of contents:**
+*请注意文档还在处理中，欢迎你的贡献.*
 
-1. [Arrow Functions](#arrow-functions)
-1. [Block Scoping Functions](#block-scoping-functions)
-1. [Template Literals](#template-literals)
-1. [Computed Property Names](#computed-property-names)
-1. [Destructuring Assignment](#destructuring-assignment)
-1. [Default Parameters](#default-parameters)
-1. [Iterators and For-Of](#iterators-and-for-of)
-1. [Classes](#classes)
-1. [Modules](#modules)
-1. [Numeric Literals](#numeric-literals)
-1. [Property Method Assignment](#property-method-assignment)
-1. [Object Initializer Shorthand](#object-initializer-shorthand)
-1. [Rest Parameters](#rest-parameters)
-1. [Spread Operator](#spread-operator)
-1. [Proxying a function object](#proxying-a-function-object)
-1. [About](#about)
+**内容:**
+
+1. [箭头函数](#arrow-functions)
+1. [块级作用域](#block-scoping-functions)
+1. [模板字符串](#template-literals)
+1. [属性名称的计算](#computed-property-names)
+1. [解构赋值](#destructuring-assignment)
+1. [默认参数](#default-parameters)
+1. [迭代器和Foro-of](#iterators-and-for-of)
+1. [Classes类](#classes)
+1. [模块](#modules)
+1. [数字字面量](#numeric-literals)
+1. [属性方法](#property-method-assignment)
+1. [对象快速初始化](#object-initializer-shorthand)
+1. [rest参数](#rest-parameters)
+1. [延展操作符](#spread-operator)
+1. [代理函数对象](#proxying-a-function-object)
+1. [关于](#about)
 1. [License](#license)
 
-## Arrow Functions
+## 箭头函数
 
-An arrow function expression (also known as fat arrow function) has a shorter syntax compared to function expressions and lexically binds the this value. Arrow functions are always anonymous.
-
+与函数表达式相比，箭头函数表达式（也称为胖箭头函数）具有更短的语法，并且以词法的方式绑定此值。 箭头功能总是匿名的。
 
 ES6:
 
@@ -34,7 +34,7 @@ ES6:
 // -> [ 2, 4, 6 ]
 ```
 
-ES5 equivalent:
+ES5 等价:
 
 ```js
 [1, 2, 3].map(function(n) { return n * 2; }, this);
@@ -46,7 +46,7 @@ ES6:
 ```js
 var evens = [2, 4, 6, 8, 10];
 
-// Expression bodies
+// bodies 表达式
 var odds = evens.map(v => v + 1);
 var nums = evens.map((v, i) => v + i);
 
@@ -56,7 +56,7 @@ console.log(odds);
 console.log(nums);
 // -> [2, 5, 8, 11, 14]
 
-// Statement bodies
+// 声明body
 var fives = [];
 nums = [1, 2, 5, 15, 25, 32];
 nums.forEach(v => {
@@ -124,15 +124,16 @@ var bob = {
 };
 ```
 
-## Block Scoping Functions
+## 块级作用域
 
-Block scoped bindings provide scopes other than the function and top level scope. This ensures your variables don't leak out of the scope they're defined:
+块级作用域绑定提供函数和顶级作用域之外的作用域。 这确保您的变量不会超出它们定义的范围:
 
 ES6:
 
 ```js
 // let declares a block scope local variable,
-// optionally initializing it to a value in ES6
+// let 声明块级作用域的本地变量,
+// 在ES6中优先选择它声明变量
 
 'use strict';
 
@@ -160,7 +161,7 @@ var a = 5;
 var b = 10;
 
 if (a === 5) {
-  // technically is more like the following
+  // 技术上更像是下面
   (function () {
     var a = 4;
     b = 1;
@@ -178,16 +179,19 @@ console.log(b); // 1
 ES6:
 
 ```js
-// const creates a read-only named constant in ES6.
+// const关键字初始化只读常量.
 'use strict';
 // define favorite as a constant and give it the value 7
+// 定义favorite作为常量并赋值为7
 const favorite = 7;
 // Attempt to overwrite the constant
+// 尝试重写常量
 try {
   favorite = 15;
 } catch (err) {
   console.log('my favorite number is still: ' + favorite);
   // will still print 7
+  // 将会打印7
 }
 ```
 
@@ -196,6 +200,7 @@ ES5:
 ```js
 'use strict';
 // define favorite as a non-writable `constant` and give it the value 7
+// 定义favorite作为不可写的`常量`并赋值为7
 Object.defineProperties(window, {
   favorite: {
     value: 7,
@@ -203,6 +208,7 @@ Object.defineProperties(window, {
   }
 });
 // ^ descriptors are by default false and const are enumerable
+// ^ 描述符默认是false，常量是可枚举的
 var favorite = 7;
 // Attempt to overwrite the constant
 favorite = 15;
@@ -210,31 +216,34 @@ favorite = 15;
 console.log('my favorite number is still: ' + favorite);
 ```
 
-## Template Literals
+## 模板字符串
 
 ES6 Template Literals are strings that can include <strong>embedded expressions</strong>. This is sometimes referred to as string interpolation.
+
+ES6模板字符串是可以包含<strong>嵌入表达式</ strong>的字符串。 这有时被称为字符串插值。
 
 ES6:
 
 ```js
-// Basic usage with an expression placeholder
+// 基本用法
 var person = 'Addy Osmani';
 console.log(`Yo! My name is ${person}!`);
 
-// Expressions work just as well with object literals
+// 表达式也可以是对象的属性
 var user = {name: 'Caitlin Potter'};
 console.log(`Thanks for getting this into V8, ${user.name}.`);
 
-// Expression interpolation. One use is readable inline math.
+// 表达式插值
 var a = 50;
 var b = 100;
 console.log(`The number of JS frameworks is ${a + b} and not ${2 * a + b}.`);
 
-// Multi-line strings without needing \n\
+
+// 多行不需要换行符 \n\
 console.log(`string text line 1
 string text line 2`);
 
-// Functions inside expressions
+// 表达式中的函数
 function fn() { return 'result'; }
 console.log(`foo ${fn()} bar`);
 ```
@@ -244,26 +253,27 @@ ES5:
 ```js
 'use strict';
 
-// Basic usage with an expression placeholder
+// 基本用法
 var person = 'Addy Osmani';
 console.log('Yo! My name is ' + person + '!');
 
-// Expressions work just as well with object literals
+// 表达式也可以是对象的属性
 var user = { name: 'Caitlin Potter' };
 console.log('Thanks for getting this into V8, ' + user.name + '.');
 
 // Expression interpolation. One use is readable inline math.
+// 表达式插值， 一个用途是可读的内联数学
 var a = 50;
 var b = 100;
 console.log('The number of JS frameworks is ' + (a + b) + ' and not ' + (2 * a + b) + '.');
 
-// Multi-line strings:
+// 多行字符串:
 console.log('string text line 1\nstring text line 2');
-// Or, alternatively:
+// 或者:
 console.log('string text line 1\n\
 string text line 2');
 
-// Functions inside expressions
+// 表达式中的函数
 function fn() {
   return 'result';
 }
@@ -271,9 +281,9 @@ console.log('foo ' + fn() + ' bar');
 ```
 
 
-## Computed Property Names
+## 计算属性名
 
-Computed property names allow you to specify properties in object literals based on expressions:
+计算属性名允许你指定表达式指定作为属性的名称
 
 ES6:
 
@@ -307,9 +317,11 @@ console.log(myObject['foobaz']);
 // -> world
 ```
 
-## Destructuring Assignment
+## 解构赋值
 
 The destructuring assignment syntax is a JavaScript expression that makes it possible to extract data from arrays or objects using a syntax that mirrors the construction of array and object literals.
+
+解构赋值语法是一个JavaScript表达式，可以使用镜像数组和对象属性值构造的语法从数组或对象中提取数据。
 
 
 ES6:
@@ -391,9 +403,9 @@ with([1,2,3]) {
 ```
 
 
-## Default Parameters
+## 默认参数
 
-Default parameters allow your functions to have optional arguments without needing to check arguments.length or check for undefined.
+默认参数允许你的函数有可选的参数，而不需要检查arguments.length或检查undefined。
 
 ES6:
 
@@ -414,8 +426,7 @@ ES5:
 'use strict';
 
 function greet() {
-  // unfair ... if you access arguments[0] like this you can simply
-  // access the msg variable name instead
+  // 如果你访问arguments[0]，像这样你可以很简单的代替使用变量名访问
   var msg = arguments[0] === undefined ? 'hello' : arguments[0];
   var name = arguments[1] === undefined ? 'world' : arguments[1];
   console.log(msg, name);
@@ -428,6 +439,7 @@ function greet(msg, name) {
 }
 
 // using basic utility that check against undefined
+// 使用检查未定义的基本实用程序
 function greet(msg, name) {
   console.log(
     defaults(msg, 'hello'),
@@ -446,6 +458,7 @@ ES6:
 ```js
 function f(x, y=12) {
   // y is 12 if not passed (or passed as undefined)
+  // y 是 12 如果没有传递 (将会作为undefined传递)
   return x + y;
 }
 
@@ -468,15 +481,19 @@ function f(x, y) {
 f(3) === 15;
 ```
 
-## Iterators And For-Of
+## 迭代器与For-of
 
 Iterators are objects that can traverse a container. It's a useful way to make a class work inside a for of loop.
 The interface is similar to the iterators-interface. Iterating with a `for..of` loop looks like:
+
+迭代器是可以遍历容器的对象，它是使一个类工作在一个for循环很有用的方式。
+接口类似于iterators-interface，迭代器与 `for..of`看起来很相像 ：
 
 ES6:
 
 ```js
 // Behind the scenes, this will get an iterator from the array and loop through it, getting values from it.
+// 下面，这将会从数组中获取迭代器并循环遍历取值。
 for (let element of [1, 2, 3]) {
   console.log(element);
 }
@@ -886,7 +903,7 @@ No proxy in ES5, hard to intercept __noSuchMethod__ and others.
 
 ## About
 
-Inspired by:
+灵感来自:
 
 * [ES6 Feature Proposals](http://tc39wiki.calculist.org/es6/)
 * [ES6 Features](https://github.com/lukehoban/es6features)
