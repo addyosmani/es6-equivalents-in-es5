@@ -25,7 +25,7 @@
 
 ## 箭头函数
 
-与函数表达式相比，箭头函数表达式（也称为胖箭头函数）具有更短的语法，并且以词法的方式绑定此值。 箭头功能总是匿名的。
+与函数表达式相比，箭头函数表达式具有更短的语法，并且以词法的方式绑定值,箭头函数是匿名函数。
 
 ES6:
 
@@ -67,7 +67,7 @@ nums.forEach(v => {
 console.log(fives);
 // -> [5, 15, 25]
 
-// Lexical this
+// this 关键字
 var bob = {
   _name: 'Bob',
   _friends: [],
@@ -85,7 +85,7 @@ ES5:
 
 var evens = [2, 4, 6, 8, 10];
 
-// Expression bodies
+// bodies 表达式 
 var odds = evens.map(function (v) {
   return v + 1;
 }, this);
@@ -102,7 +102,7 @@ console.log(nums);
 var fives = [];
 nums = [1, 2, 5, 15, 25, 32];
 
-// Statement bodies
+// bodies 声明 
 nums.forEach(function (v) {
   if (v % 5 === 0) {
     fives.push(v);
@@ -112,7 +112,7 @@ nums.forEach(function (v) {
 console.log(fives);
 // -> [5, 15, 25]
 
-// Lexical this
+// this 关键字
 var bob = {
   _name: 'Bob',
   _friends: [],
@@ -126,12 +126,11 @@ var bob = {
 
 ## 块级作用域
 
-块级作用域绑定提供函数和顶级作用域之外的作用域。 这确保您的变量不会超出它们定义的范围:
+块级作用域绑定提供函数和顶级作用域之外的作用域,确保您的变量不会超出它们定义的范围:
 
 ES6:
 
 ```js
-// let declares a block scope local variable,
 // let 声明块级作用域的本地变量,
 // 在ES6中优先选择它声明变量
 
@@ -141,8 +140,8 @@ var a = 5;
 var b = 10;
 
 if (a === 5) {
-  let a = 4; // The scope is inside the if-block
-  var b = 1; // The scope is inside the function
+  let a = 4; // 作用域在if块内
+  var b = 1; //作用域在function内
 
   console.log(a);  // 4
   console.log(b);  // 1
@@ -161,7 +160,7 @@ var a = 5;
 var b = 10;
 
 if (a === 5) {
-  // 技术上更像是下面
+  // 在技术上层面上更像是下面
   (function () {
     var a = 4;
     b = 1;
@@ -181,10 +180,8 @@ ES6:
 ```js
 // const关键字初始化只读常量.
 'use strict';
-// define favorite as a constant and give it the value 7
 // 定义favorite作为常量并赋值为7
 const favorite = 7;
-// Attempt to overwrite the constant
 // 尝试重写常量
 try {
   favorite = 15;
@@ -199,7 +196,6 @@ ES5:
 
 ```js
 'use strict';
-// define favorite as a non-writable `constant` and give it the value 7
 // 定义favorite作为不可写的`常量`并赋值为7
 Object.defineProperties(window, {
   favorite: {
@@ -207,18 +203,15 @@ Object.defineProperties(window, {
     enumerable: true
   }
 });
-// ^ descriptors are by default false and const are enumerable
 // ^ 描述符默认是false，常量是可枚举的
 var favorite = 7;
-// Attempt to overwrite the constant
+// 尝试重写常量
 favorite = 15;
-// will still print 7
+// 将会打印7
 console.log('my favorite number is still: ' + favorite);
 ```
 
 ## 模板字符串
-
-ES6 Template Literals are strings that can include <strong>embedded expressions</strong>. This is sometimes referred to as string interpolation.
 
 ES6模板字符串是可以包含<strong>嵌入表达式</ strong>的字符串。 这有时被称为字符串插值。
 
@@ -261,7 +254,6 @@ console.log('Yo! My name is ' + person + '!');
 var user = { name: 'Caitlin Potter' };
 console.log('Thanks for getting this into V8, ' + user.name + '.');
 
-// Expression interpolation. One use is readable inline math.
 // 表达式插值， 一个用途是可读的内联数学
 var a = 50;
 var b = 100;
@@ -283,7 +275,7 @@ console.log('foo ' + fn() + ' bar');
 
 ## 计算属性名
 
-计算属性名允许你指定表达式指定作为属性的名称
+计算属性名允许你使用表达式作为属性的名称
 
 ES6:
 
@@ -318,8 +310,6 @@ console.log(myObject['foobaz']);
 ```
 
 ## 解构赋值
-
-The destructuring assignment syntax is a JavaScript expression that makes it possible to extract data from arrays or objects using a syntax that mirrors the construction of array and object literals.
 
 解构赋值语法是一个JavaScript表达式，可以使用镜像数组和对象属性值构造的语法从数组或对象中提取数据。
 
@@ -357,7 +347,7 @@ ES6:
 var [a, , b] = [1,2,3];
 ```
 
-ES6 (shimming using `Symbol.iterator`):
+ES6 (使用 `Symbol.iterator`垫片):
 
 ```js
 'use strict';
@@ -426,7 +416,7 @@ ES5:
 'use strict';
 
 function greet() {
-  // 如果你访问arguments[0]，像这样你可以很简单的代替使用变量名访问
+  // 如果你访问arguments[0]，像这样你可以很简单的代替使用变量名访问 
   var msg = arguments[0] === undefined ? 'hello' : arguments[0];
   var name = arguments[1] === undefined ? 'world' : arguments[1];
   console.log(msg, name);
@@ -438,7 +428,6 @@ function greet(msg, name) {
   console.log(msg,name);
 }
 
-// using basic utility that check against undefined
 // 使用检查未定义的基本实用程序
 function greet(msg, name) {
   console.log(
@@ -457,7 +446,6 @@ ES6:
 
 ```js
 function f(x, y=12) {
-  // y is 12 if not passed (or passed as undefined)
   // y 是 12 如果没有传递 (将会作为undefined传递)
   return x + y;
 }
@@ -483,16 +471,12 @@ f(3) === 15;
 
 ## 迭代器与For-of
 
-Iterators are objects that can traverse a container. It's a useful way to make a class work inside a for of loop.
-The interface is similar to the iterators-interface. Iterating with a `for..of` loop looks like:
-
 迭代器是可以遍历容器的对象，它是使一个类工作在一个for循环很有用的方式。
 接口类似于iterators-interface，迭代器与 `for..of`看起来很相像 ：
 
 ES6:
 
 ```js
-// Behind the scenes, this will get an iterator from the array and loop through it, getting values from it.
 // 下面，这将会从数组中获取迭代器并循环遍历取值。
 for (let element of [1, 2, 3]) {
   console.log(element);
@@ -500,7 +484,7 @@ for (let element of [1, 2, 3]) {
 // => 1 2 3
 ```
 
-ES6 (without using `for-of`, if `Symbol` is supported):
+ES6 (如果支持`Symbol`，可以不使用`for-of`):
 
 ```js
 'use strict';
@@ -516,10 +500,9 @@ for (var _iterator = [1, 2, 3][Symbol.iterator](), _step; !(_step = _iterator.ne
 ES5 (approximates):
 
 ```js
-// Using forEach()
-// Doesn't require declaring indexing and element variables in your containing
-// scope. They get supplied as arguments to the iterator and are scoped to just
-// that iteration.
+
+// 使用 forEach（）不需要在作用域范围内声明索引和元素变量，它们作为参数传递给迭代器，并且作用域只是这次迭代。
+
 var a = [1,2,3];
 a.forEach(function (element) {
     console.log(element);
@@ -527,7 +510,7 @@ a.forEach(function (element) {
 
 // => 1 2 3
 
-// Using a for loop
+// 使用for遍历
 var a = [1,2,3];
 for (var i = 0; i < a.length; ++i) {
     console.log(a[i]);
@@ -535,12 +518,11 @@ for (var i = 0; i < a.length; ++i) {
 // => 1 2 3
 ```
 
-Note the use of `Symbol`. The ES5 equivalent would require a Symbol polyfill in order to correctly function.
+注意ES5中使用`Symbol`， 需要Symbol polyfill才能正确运行。
 
 ## Classes
 
-This implements class syntax and semantics as described in the ES6 draft spec. Classes are a great way to reuse code.
-Several JS libraries provide classes and inheritance, but they aren't mutually compatible.
+ES6草案规范中描述的类语法和语义，class是实现重用代码的好方法，有几个JS库提供类和继承，但它们不是相互兼容的。
 
 ES6:
 
@@ -575,7 +557,7 @@ hw.echo();
 alert(Hello.sayHelloAll());
 ```
 
-ES5 (approximate):
+ES5 (近似):
 
 ```js
 function Hello(name) {
@@ -606,13 +588,13 @@ hw.echo();
 alert(Hello.sayHelloAll());
 ```
 
-A more faithful (albeit, slightly verbose) interpretation can be found in this [Babel](http://goo.gl/573aDy) output.
-
+可以在[Babel](http://goo.gl/573aDy)中找到更加详尽的解释
 ## Modules
 
-Modules are mostly implemented, with some parts of the Loader API still to be corrected. Modules try to solve many issues in dependencies and deployment, allowing users to create modules with explicit exports, import specific exported names from those modules, and keep these names separate.
 
-*Assumes an environment using CommonJS*
+模块已经实现大部分功能，Loader API的一些部分仍需要更正。 模块尝试解决依赖和部署中的问题，允许用户使用显式导出已创建模块
+
+*假设在使用CommonJS 环境*
 
 
 app.js - ES6
@@ -682,7 +664,7 @@ exports['default'] = function (x) {
 module.exports = _extends(exports['default'], exports);
 ```
 
-## Numeric Literals
+## 数字字面量
 
 ES6:
 
@@ -715,9 +697,8 @@ var octal = [0, 1, 8, 63];
 console.assert(octal === [0, 1, 8, 63]);
 ```
 
-## Property Method Assignment
-
-Method syntax is supported in object initializers, for example see toString():
+## 方法属性
+对象初始化器中支持Method语法，例如toString（）：
 
 ES6:
 
@@ -749,10 +730,9 @@ console.log(object.toString() === 42);
 // -> true
 ```
 
-## Object Initializer Shorthand
+## 对象初始化快捷方式
 
-This allows you to skip repeating yourself when the property name and property value are the same in an object literal.
-
+省略重复的属性名和属性值在字面量的对象中
 ES6:
 
 ```js
@@ -787,16 +767,16 @@ console.log(getPoint() === {
 });
 ```
 
-## Rest Parameters
+## Rest 参数
 
-Rest parameters allows your functions to have variable number of arguments without using the arguments object.
-The rest parameter is an instance of Array so all the array methods just work.
+Rest参数让函数具有可变数量的参数，在不使用arguments对象情况下。
+rest参数是一个Array的实例，因此在rest参数使用数组函数也可以正常工作。
 
 ES6:
 
 ```js
 function f(x, ...y) {
-  // y is an Array
+  // y是数组
   return x * y.length;
 }
 
@@ -813,7 +793,7 @@ function f(x) {
   var y = [];
   y.push.apply(y, arguments) && y.shift();
 
-  // y is an Array
+  // y是数组
   return x * y.length;
 }
 
@@ -823,7 +803,7 @@ console.log(f(3, 'hello', true) === 6);
 
 ## Spread Operator
 
-The spread operator is like the reverse of rest parameters. It allows you to expand an array into multiple formal parameters.
+延展操作符与Rest参数相反，它允许您将数组扩展为多个参数形式。
 
 ES6:
 
@@ -860,7 +840,7 @@ ES6:
 function f(x, y, z) {
   return x + y + z;
 }
-// Pass each elem of array as argument
+// 作为参数传递每个数组元素
 f(...[1,2,3]) === 6;
 ```
 
@@ -872,11 +852,12 @@ ES5:
 function f(x, y, z) {
   return x + y + z;
 }
-// Pass each elem of array as argument
+
+// 作为参数传递每个数组元素
 f.apply(null, [1, 2, 3]) === 6;
 ```
 
-## Proxying a function object
+## 函数对象代理
 
 ES6:
 
@@ -898,10 +879,9 @@ console.log(p() === 'I am the proxy');
 
 ES5:
 
-No proxy in ES5, hard to intercept __noSuchMethod__ and others.
+在ES5没有proxy
 
-
-## About
+## 关于
 
 灵感来自:
 
