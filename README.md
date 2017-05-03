@@ -135,8 +135,6 @@ ES6:
 // let declares a block scope local variable,
 // optionally initializing it to a value in ES6
 
-'use strict';
-
 var a = 5;
 var b = 10;
 
@@ -180,7 +178,7 @@ ES6:
 
 ```js
 // const creates a read-only named constant in ES6.
-'use strict';
+
 // define favorite as a constant and give it the value 7
 const favorite = 7;
 // Attempt to overwrite the constant
